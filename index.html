@@ -1,0 +1,837 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Brainora — Intercampus Learning Platform</title>
+    <meta name="description" content="Share and access study resources across university campuses.">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Application Stylesheet -->
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%230d9488'><path d='M12 2a9 9 0 0 0-9 9c0 3.6 2.1 6.7 5.2 8.1v1.9c0 .6.4 1 1 1h5.6c.6 0 1-.4 1-1v-1.9c3.1-1.4 5.2-4.5 5.2-8.1a9 9 0 0 0-9-9z'/></svg>">
+</head>
+<body>
+
+    <!-- ====================================================================
+         LEFT VERTICAL NAVIGATION BAR
+         ==================================================================== -->
+    <aside class="sidebar" id="app-sidebar" aria-label="Main Navigation">
+        <!-- Brand Header -->
+        <div class="sidebar-header">
+            <div class="logo-container">
+                <div class="logo-icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M12 2a9 9 0 0 0-9 9c0 3.6 2.1 6.7 5.2 8.1v1.9c0 .6.4 1 1 1h5.6c.6 0 1-.4 1-1v-1.9c3.1-1.4 5.2-4.5 5.2-8.1a9 9 0 0 0-9-9z"></path>
+                        <path d="M9 10h.01M15 10h.01M9.5 15a3.5 3.5 0 0 0 5 0"></path>
+                    </svg>
+                </div>
+                <div class="logo-text-wrap">
+                    <span class="logo-brand">Brainora</span>
+                    <span class="logo-badge">Intercampus</span>
+                </div>
+            </div>
+            <button class="sidebar-close" id="sidebar-close-btn" aria-label="Close menu">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+            </button>
+        </div>
+
+        <!-- Navigation Links -->
+        <nav class="sidebar-nav">
+            <a href="#dashboard" class="nav-link active" data-target="dashboard" id="nav-dashboard">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="3" width="7" height="9"></rect>
+                    <rect x="14" y="3" width="7" height="5"></rect>
+                    <rect x="14" y="12" width="7" height="9"></rect>
+                    <rect x="3" y="16" width="7" height="5"></rect>
+                </svg>
+                <span>Dashboard</span>
+            </a>
+
+            <a href="#uploads" class="nav-link" data-target="uploads" id="nav-uploads">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                    <polyline points="17 8 12 3 7 8"></polyline>
+                    <line x1="12" y1="3" x2="12" y2="15"></line>
+                </svg>
+                <span>Uploads</span>
+                <span class="nav-badge nav-badge-gold">+20⚡</span>
+            </a>
+
+            <a href="#resources" class="nav-link" data-target="resources" id="nav-resources">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+                    <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+                    <line x1="9" y1="7" x2="15" y2="7"></line>
+                    <line x1="9" y1="11" x2="13" y2="11"></line>
+                </svg>
+                <span>Resources</span>
+                <span class="nav-badge" id="sidebar-resource-count">8</span>
+            </a>
+
+            <a href="#reviews" class="nav-link" data-target="reviews" id="nav-reviews">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                </svg>
+                <span>Ratings & Reviews</span>
+                <span class="nav-badge" id="sidebar-review-count">58</span>
+            </a>
+
+            <a href="#profile" class="nav-link" data-target="profile" id="nav-profile">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                    <circle cx="12" cy="7" r="4"></circle>
+                </svg>
+                <span>Profile</span>
+            </a>
+
+            <!-- Clean Campus Status Indicator -->
+            <div class="sidebar-campus-widget">
+                <div class="campus-status-title">
+                    <span class="status-pulse-dot"></span>
+                    <span>48 Campuses Active</span>
+                </div>
+            </div>
+        </nav>
+
+        <!-- User Mini Card -->
+        <div class="sidebar-footer">
+            <div class="user-mini-card" id="sidebar-user-card" title="View Profile">
+                <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=250&q=80" alt="Alex Morgan" class="user-mini-avatar" id="sidebar-user-avatar">
+                <div class="user-mini-info">
+                    <div class="user-mini-name" id="sidebar-user-name">Alex Morgan</div>
+                    <div class="user-mini-dept" id="sidebar-user-dept">Caltech • CS</div>
+                </div>
+                <div class="user-mini-credits">
+                    <span>⚡</span>
+                    <span id="sidebar-user-credits">340</span>
+                </div>
+            </div>
+        </div>
+    </aside>
+
+    <!-- ====================================================================
+         MAIN APP CONTENT WRAPPER
+         ==================================================================== -->
+    <div class="main-wrapper">
+        <!-- Top Sticky Header -->
+        <header class="app-header">
+            <div class="header-left">
+                <button class="mobile-menu-toggle" id="mobile-menu-btn" aria-label="Open sidebar menu">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+                </button>
+                <div class="header-title-wrap">
+                    <h1 id="current-page-title">Dashboard</h1>
+                    <p id="current-page-subtitle">Overview & quick stats</p>
+                </div>
+            </div>
+
+            <!-- Quick Search -->
+            <div class="header-search">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                <input type="text" id="global-search-input" placeholder="Search resources..." autocomplete="off">
+            </div>
+
+            <!-- Header Actions -->
+            <div class="header-actions">
+                <div class="credits-pill" id="header-credits-pill" title="Credits Balance">
+                    <span>⚡</span>
+                    <span id="header-credits-count">340 Credits</span>
+                </div>
+
+                <button class="header-icon-btn" id="theme-toggle-btn" title="Toggle Theme" aria-label="Toggle theme">
+                    <svg id="theme-icon-dark" style="display: none;" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+                    <svg id="theme-icon-light" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+                </button>
+
+                <button class="header-icon-btn" id="notifications-btn" title="Activity" aria-label="Notifications">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path><path d="M13.73 21a2 2 0 0 1-3.46 0"></path></svg>
+                    <span class="badge-dot"></span>
+                </button>
+
+                <button class="btn-primary" id="header-quick-upload-btn">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+                    <span>Upload</span>
+                </button>
+            </div>
+        </header>
+
+        <!-- Main Body -->
+        <main class="content-body">
+            
+            <!-- ================================================================
+                 SECTION 1: DASHBOARD
+                 ================================================================ -->
+            <section class="view-section active-view" id="section-dashboard">
+                <!-- Clean Welcome Banner -->
+                <div class="dashboard-hero">
+                    <div class="hero-content">
+                        <div>
+                            <h2 class="hero-title" id="dash-greeting">Welcome, Alex Morgan</h2>
+                            <p class="hero-subtitle">
+                                Share and access study resources across 48 universities.
+                            </p>
+                        </div>
+                        <div class="hero-stats-pill-group">
+                            <div class="hero-badge-pill">
+                                <div class="hero-badge-icon">🏛️</div>
+                                <div>
+                                    <div class="hero-badge-label">Campus</div>
+                                    <div class="hero-badge-val" id="dash-hero-campus">Caltech</div>
+                                </div>
+                            </div>
+                            <div class="hero-badge-pill">
+                                <div class="hero-badge-icon">🌟</div>
+                                <div>
+                                    <div class="hero-badge-label">Status</div>
+                                    <div class="hero-badge-val" id="dash-hero-tier">Gold Scholar</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 4 Summary Cards -->
+                <div class="stats-grid">
+                    <div class="stat-card stat-card-gold">
+                        <div class="stat-header">
+                            <span class="stat-title">Credits Earned</span>
+                            <div class="stat-icon-wrap stat-icon-gold">⚡</div>
+                        </div>
+                        <div class="stat-value" id="stat-credits-earned">340</div>
+                        <div class="stat-subtext">
+                            <span class="stat-trend-up">↑ +45 this week</span>
+                        </div>
+                    </div>
+
+                    <div class="stat-card stat-card-cyan">
+                        <div class="stat-header">
+                            <span class="stat-title">Resources Shared</span>
+                            <div class="stat-icon-wrap stat-icon-cyan">📤</div>
+                        </div>
+                        <div class="stat-value" id="stat-resources-shared">14</div>
+                        <div class="stat-subtext">
+                            <span>PDF, PNG, MP4</span>
+                        </div>
+                    </div>
+
+                    <div class="stat-card stat-card-indigo">
+                        <div class="stat-header">
+                            <span class="stat-title">Resources Accessed</span>
+                            <div class="stat-icon-wrap stat-icon-indigo">📚</div>
+                        </div>
+                        <div class="stat-value" id="stat-resources-accessed">38</div>
+                        <div class="stat-subtext">
+                            <span>Across 12 campuses</span>
+                        </div>
+                    </div>
+
+                    <div class="stat-card stat-card-emerald">
+                        <div class="stat-header">
+                            <span class="stat-title">Average Rating</span>
+                            <div class="stat-icon-wrap stat-icon-emerald">⭐</div>
+                        </div>
+                        <div class="stat-value" id="stat-avg-rating">4.92</div>
+                        <div class="stat-subtext">
+                            <span class="star-group">★★★★★</span>
+                            <span>(58 reviews)</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Dashboard Grid -->
+                <div class="dashboard-content-grid">
+                    <!-- Recommended Resources -->
+                    <div class="section-panel">
+                        <div class="panel-header">
+                            <div class="panel-title">
+                                <span>🎯</span>
+                                <span>Recommended</span>
+                            </div>
+                            <button class="panel-action-btn" id="dash-view-all-resources">
+                                <span>View all</span>
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                            </button>
+                        </div>
+                        <div class="recommended-list" id="dashboard-recommended-list">
+                            <!-- Populated dynamically via JS -->
+                        </div>
+                    </div>
+
+                    <!-- Recent Activity -->
+                    <div class="section-panel">
+                        <div class="panel-header">
+                            <div class="panel-title">
+                                <span>⚡</span>
+                                <span>Recent Activity</span>
+                            </div>
+                        </div>
+                        <div class="activity-feed" id="dashboard-activity-feed">
+                            <!-- Populated dynamically via JS -->
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ================================================================
+                 SECTION 2: UPLOADS
+                 ================================================================ -->
+            <section class="view-section" id="section-uploads">
+                <div class="section-header-block">
+                    <h2 class="section-heading">Upload Study Material</h2>
+                    <p class="section-subheading">Earn 20 credits per approved upload.</p>
+                </div>
+
+                <div class="uploads-container">
+                    <!-- Upload Form -->
+                    <div class="upload-card-main">
+                        <form id="upload-form" autocomplete="off">
+                            <!-- Format Selection -->
+                            <div class="format-selector-row">
+                                <label class="field-label">1. Format</label>
+                                <div class="format-options-grid">
+                                    <div class="format-option-card selected" data-format="PDF" id="fmt-opt-pdf">
+                                        <div class="fmt-icon">📄</div>
+                                        <div class="fmt-name">PDF</div>
+                                        <div class="fmt-desc">Notes & guides (Max 50MB)</div>
+                                    </div>
+                                    <div class="format-option-card" data-format="PNG" id="fmt-opt-png">
+                                        <div class="fmt-icon">🖼️</div>
+                                        <div class="fmt-name">PNG</div>
+                                        <div class="fmt-desc">Diagrams & cheat sheets (Max 25MB)</div>
+                                    </div>
+                                    <div class="format-option-card" data-format="MP4" id="fmt-opt-mp4">
+                                        <div class="fmt-icon">🎥</div>
+                                        <div class="fmt-name">MP4</div>
+                                        <div class="fmt-desc">Video tutorials (Max 200MB)</div>
+                                    </div>
+                                </div>
+                                <input type="hidden" id="upload-format-input" value="PDF">
+                            </div>
+
+                            <!-- Dropzone -->
+                            <div class="field-label">2. File</div>
+                            <div class="dropzone-container" id="upload-dropzone">
+                                <div class="dropzone-icon">
+                                    <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="17 8 12 3 7 8"></polyline><line x1="12" y1="3" x2="12" y2="15"></line></svg>
+                                </div>
+                                <div class="dropzone-title">Drop file here, or click to browse</div>
+                                <div class="dropzone-subtitle" id="dropzone-accepted-hint">Accepts PDF files</div>
+                                <button type="button" class="dropzone-browse-btn" id="dropzone-browse-trigger">Choose File</button>
+                                <input type="file" id="file-input" class="dropzone-file-input" accept=".pdf">
+                            </div>
+
+                            <!-- File Preview Strip -->
+                            <div class="file-preview-strip" id="file-preview-strip">
+                                <div class="file-preview-left">
+                                    <span class="file-type-pill" id="preview-pill-type">PDF</span>
+                                    <div>
+                                        <div class="file-preview-name" id="preview-file-name">filename.pdf</div>
+                                        <div class="file-preview-size" id="preview-file-size">12.4 MB</div>
+                                    </div>
+                                </div>
+                                <button type="button" class="file-remove-btn" id="file-remove-btn" title="Remove">&times;</button>
+                            </div>
+
+                            <!-- Contributor Fields -->
+                            <div class="form-section-title">
+                                <span>👤 Contributor</span>
+                            </div>
+                            <div class="form-grid-2">
+                                <div class="form-group">
+                                    <label class="field-label" for="student-name">Name *</label>
+                                    <input type="text" id="student-name" class="form-input" placeholder="Alex Morgan" required>
+                                </div>
+                                <div class="form-group">
+                                    <label class="field-label" for="student-email">Email (.edu) *</label>
+                                    <input type="email" id="student-email" class="form-input" placeholder="alex.morgan@caltech.edu" required>
+                                </div>
+                            </div>
+
+                            <div class="form-grid-3">
+                                <div class="form-group">
+                                    <label class="field-label" for="student-department">Department *</label>
+                                    <select id="student-department" class="form-select" required>
+                                        <option value="Computer Science">Computer Science</option>
+                                        <option value="Electrical Engineering">Electrical Engineering</option>
+                                        <option value="Physics & Mathematics">Physics & Mathematics</option>
+                                        <option value="Mechanical Engineering">Mechanical Engineering</option>
+                                        <option value="Bioengineering & Medicine">Bioengineering</option>
+                                        <option value="Business & Economics">Business & Econ</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label class="field-label" for="student-year">Year *</label>
+                                    <select id="student-year" class="form-select" required>
+                                        <option value="1st Year">1st Year</option>
+                                        <option value="2nd Year">2nd Year</option>
+                                        <option value="3rd Year" selected>3rd Year</option>
+                                        <option value="4th Year">4th Year</option>
+                                        <option value="Graduate">Graduate</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label class="field-label" for="student-section">Section *</label>
+                                    <input type="text" id="student-section" class="form-input" placeholder="CS-Alpha" required>
+                                </div>
+                            </div>
+
+                            <!-- Resource Metadata -->
+                            <div class="form-section-title">
+                                <span>📚 Resource</span>
+                            </div>
+
+                            <div class="form-grid-2">
+                                <div class="form-group">
+                                    <label class="field-label" for="resource-title">Title *</label>
+                                    <input type="text" id="resource-title" class="form-input" placeholder="e.g. Dynamic Programming Masterclass" required>
+                                </div>
+                                <div class="form-group">
+                                    <label class="field-label" for="resource-category">Category *</label>
+                                    <select id="resource-category" class="form-select" required>
+                                        <option value="Computer Science">Computer Science</option>
+                                        <option value="Data Science & AI">AI & Data Science</option>
+                                        <option value="Mathematics">Mathematics</option>
+                                        <option value="Physics">Physics</option>
+                                        <option value="Engineering">Engineering</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-group" style="margin-bottom: 1.15rem;">
+                                <label class="field-label" for="resource-description">Description *</label>
+                                <textarea id="resource-description" class="form-textarea" placeholder="Brief summary of key topics, concepts, or problem sets covered..." required></textarea>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="field-label" for="resource-tags">Tags</label>
+                                <input type="text" id="resource-tags" class="form-input" placeholder="e.g. algorithms, midterm, python">
+                            </div>
+
+                            <!-- Submit Row -->
+                            <div class="form-submit-row">
+                                <div class="stat-subtext">
+                                    <span>Reward: <strong>+20 Credits</strong></span>
+                                </div>
+                                <button type="submit" class="btn-primary upload-submit-btn" id="upload-submit-btn">
+                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                                    <span>Publish (+20⚡)</span>
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+
+                    <!-- Clean Guidance Sidebar -->
+                    <div class="upload-guidance-wrap">
+                        <div class="guidance-card">
+                            <div class="guidance-header">
+                                <span>📋</span>
+                                <span>Upload Guidance</span>
+                            </div>
+                            <div class="guidance-list">
+                                <div class="guidance-item">
+                                    <div class="guidance-icon">🎯</div>
+                                    <div class="guidance-item-body">
+                                        <h4>Supported Formats</h4>
+                                        <p>PDF (notes up to 50MB), PNG (diagrams up to 25MB), MP4 (videos up to 200MB).</p>
+                                    </div>
+                                </div>
+
+                                <div class="guidance-item">
+                                    <div class="guidance-icon">🛡️</div>
+                                    <div class="guidance-item-body">
+                                        <h4>Academic Integrity</h4>
+                                        <p>Share only your original notes, study summaries, or authorized tutorial recordings.</p>
+                                    </div>
+                                </div>
+
+                                <div class="guidance-item">
+                                    <div class="guidance-icon">⚡</div>
+                                    <div class="guidance-item-body">
+                                        <h4>Credit Rewards</h4>
+                                        <p>Earn +20 credits per upload. Access peer resources for 5 credits.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ================================================================
+                 SECTION 3: RESOURCES
+                 ================================================================ -->
+            <section class="view-section" id="section-resources">
+                <div class="section-header-block">
+                    <h2 class="section-heading">Resources</h2>
+                    <p class="section-subheading">Browse verified study materials across campuses.</p>
+                </div>
+
+                <!-- Controls Bar -->
+                <div class="resources-controls-bar">
+                    <div class="controls-top-row">
+                        <div class="resource-search-box">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                            <input type="text" id="resource-search-input" placeholder="Search by title, subject, campus...">
+                        </div>
+                        <div class="controls-filters">
+                            <select class="select-filter" id="resource-dept-filter" aria-label="Department">
+                                <option value="all">All Departments</option>
+                                <option value="Computer Science">Computer Science</option>
+                                <option value="Mathematics">Mathematics</option>
+                                <option value="Physics">Physics</option>
+                            </select>
+                            <select class="select-filter" id="resource-sort-filter" aria-label="Sort">
+                                <option value="popular">Most Popular</option>
+                                <option value="rating">Highest Rated</option>
+                                <option value="newest">Newest</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Clean Format Tabs -->
+                    <div class="format-pill-tabs">
+                        <button class="fmt-tab-btn active" data-format="all">
+                            <span>All (<span id="count-fmt-all">8</span>)</span>
+                        </button>
+                        <button class="fmt-tab-btn" data-format="PDF">
+                            <span>📄 PDF (<span id="count-fmt-pdf">4</span>)</span>
+                        </button>
+                        <button class="fmt-tab-btn" data-format="PNG">
+                            <span>🖼️ PNG (<span id="count-fmt-png">2</span>)</span>
+                        </button>
+                        <button class="fmt-tab-btn" data-format="MP4">
+                            <span>🎥 MP4 (<span id="count-fmt-mp4">2</span>)</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Grid -->
+                <div class="resources-grid" id="resources-grid-container">
+                    <!-- Populated dynamically via JS -->
+                </div>
+            </section>
+
+            <!-- ================================================================
+                 SECTION 4: RATINGS & REVIEWS
+                 ================================================================ -->
+            <section class="view-section" id="section-reviews">
+                <div class="section-header-block">
+                    <h2 class="section-heading">Ratings & Reviews</h2>
+                    <p class="section-subheading">Feedback on your shared study resources.</p>
+                </div>
+
+                <div class="reviews-container">
+                    <!-- Summary Card -->
+                    <div class="reviews-summary-card">
+                        <div class="rating-score-box">
+                            <div class="big-rating-number" id="review-summary-score">4.92</div>
+                            <div class="rating-score-stars">★★★★★</div>
+                            <div class="rating-score-caption">Overall Rating</div>
+                        </div>
+
+                        <div class="rating-bars-box">
+                            <div class="rating-bar-row">
+                                <span class="rating-bar-label">5 Stars</span>
+                                <div class="rating-progress-track">
+                                    <div class="rating-progress-fill" style="width: 88%;"></div>
+                                </div>
+                                <span class="rating-bar-pct">88%</span>
+                            </div>
+                            <div class="rating-bar-row">
+                                <span class="rating-bar-label">4 Stars</span>
+                                <div class="rating-progress-track">
+                                    <div class="rating-progress-fill" style="width: 10%;"></div>
+                                </div>
+                                <span class="rating-bar-pct">10%</span>
+                            </div>
+                            <div class="rating-bar-row">
+                                <span class="rating-bar-label">3 Stars</span>
+                                <div class="rating-progress-track">
+                                    <div class="rating-progress-fill" style="width: 2%;"></div>
+                                </div>
+                                <span class="rating-bar-pct">2%</span>
+                            </div>
+                            <div class="rating-bar-row">
+                                <span class="rating-bar-label">2 Stars</span>
+                                <div class="rating-progress-track">
+                                    <div class="rating-progress-fill" style="width: 0%;"></div>
+                                </div>
+                                <span class="rating-bar-pct">0%</span>
+                            </div>
+                            <div class="rating-bar-row">
+                                <span class="rating-bar-label">1 Star</span>
+                                <div class="rating-progress-track">
+                                    <div class="rating-progress-fill" style="width: 0%;"></div>
+                                </div>
+                                <span class="rating-bar-pct">0%</span>
+                            </div>
+                        </div>
+
+                        <div class="trust-seal-box">
+                            <div class="trust-badge-head">
+                                <span>🛡️</span>
+                                <span>Verified Feedback</span>
+                            </div>
+                            <p class="trust-desc">
+                                All reviews are submitted by authenticated peer students.
+                            </p>
+                            <button class="btn-secondary" id="btn-open-review-modal" style="margin-top: 0.5rem; justify-content: center;">
+                                <span>✍️ Write a Review</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Filter Bar -->
+                    <div class="reviews-filter-bar">
+                        <div class="reviews-search">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                            <input type="text" id="reviews-search-input" placeholder="Search reviews...">
+                        </div>
+                        <div class="format-pill-tabs">
+                            <button class="fmt-tab-btn active" data-rating-filter="all">All Reviews</button>
+                            <button class="fmt-tab-btn" data-rating-filter="5">5 Stars</button>
+                            <button class="fmt-tab-btn" data-rating-filter="4">4 Stars</button>
+                        </div>
+                    </div>
+
+                    <!-- List -->
+                    <div class="reviews-grid-list" id="reviews-list-container">
+                        <!-- Populated dynamically via JS -->
+                    </div>
+                </div>
+            </section>
+
+            <!-- ================================================================
+                 SECTION 5: PROFILE
+                 ================================================================ -->
+            <section class="view-section" id="section-profile">
+                <div class="section-header-block">
+                    <h2 class="section-heading">Profile</h2>
+                    <p class="section-subheading">Your details and shared study materials.</p>
+                </div>
+
+                <div class="profile-container">
+                    <!-- Hero Card -->
+                    <div class="profile-hero-card">
+                        <div class="profile-header-main">
+                            <div class="profile-avatar-wrap">
+                                <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=250&q=80" alt="Alex Morgan" class="profile-avatar-img" id="profile-img">
+                                <div class="profile-info-block">
+                                    <h2 id="profile-name">Alex Morgan</h2>
+                                    <div class="profile-meta-line" id="profile-academic-line">
+                                        Caltech • Computer Science • 3rd Year • Section CS-Alpha
+                                    </div>
+                                    <div class="profile-badges-strip" id="profile-badges-strip">
+                                        <!-- Populated via JS -->
+                                    </div>
+                                </div>
+                            </div>
+                            <button class="btn-secondary" id="btn-edit-profile">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9"></path><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path></svg>
+                                <span>Edit</span>
+                            </button>
+                        </div>
+
+                        <!-- Bio -->
+                        <div class="profile-bio-box" id="profile-bio">
+                            Junior specializing in Distributed Systems and Algorithmic Optimization.
+                        </div>
+
+                        <!-- Stats -->
+                        <div class="profile-stats-grid">
+                            <div class="p-stat-box">
+                                <div class="p-stat-val" id="prof-stat-uploads">14</div>
+                                <div class="p-stat-label">Shared</div>
+                            </div>
+                            <div class="p-stat-box">
+                                <div class="p-stat-val" id="prof-stat-downloads">1,840</div>
+                                <div class="p-stat-label">Downloads</div>
+                            </div>
+                            <div class="p-stat-box">
+                                <div class="p-stat-val" id="prof-stat-credits">340 ⚡</div>
+                                <div class="p-stat-label">Credits</div>
+                            </div>
+                            <div class="p-stat-box">
+                                <div class="p-stat-val" id="prof-stat-helpfulness">98.4%</div>
+                                <div class="p-stat-label">Helpful</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Shared Table -->
+                    <div class="profile-shared-section">
+                        <div class="panel-header">
+                            <div class="panel-title">
+                                <span>📂</span>
+                                <span>Shared Materials</span>
+                            </div>
+                            <button class="btn-primary" id="profile-upload-btn">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+                                <span>Upload New</span>
+                            </button>
+                        </div>
+
+                        <div class="my-resources-table-wrap">
+                            <table class="my-resources-table">
+                                <thead>
+                                    <tr>
+                                        <th>Resource</th>
+                                        <th>Subject</th>
+                                        <th>Downloads</th>
+                                        <th>Views</th>
+                                        <th>Rating</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="profile-my-resources-tbody">
+                                    <!-- Populated via JS -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+        </main>
+    </div>
+
+    <!-- ====================================================================
+         MODAL 1: PREVIEW
+         ==================================================================== -->
+    <div class="modal-overlay" id="resource-preview-modal" aria-hidden="true">
+        <div class="modal-box">
+            <div class="modal-header">
+                <div>
+                    <div class="modal-title" id="preview-modal-title">Preview</div>
+                    <div class="stat-subtext" id="preview-modal-subtitle">PDF • Caltech</div>
+                </div>
+                <button class="modal-close-btn" id="preview-modal-close" aria-label="Close">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="preview-viewer-wrap" id="preview-viewer-container"></div>
+                <h4 style="font-size: 0.95rem; font-weight: 800; margin-bottom: 0.4rem; color: var(--text-primary);">Description</h4>
+                <p id="preview-modal-desc" style="font-size: 0.88rem; color: var(--text-secondary); line-height: 1.6; margin-bottom: 1.25rem;"></p>
+                <div class="res-contributor-box" id="preview-modal-contributor" style="border: none; padding: 0; margin-bottom: 0;"></div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn-secondary" id="preview-modal-cancel">Close</button>
+                <button class="btn-primary" id="preview-modal-download-btn">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                    <span id="preview-download-label">Download (5 ⚡)</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ====================================================================
+         MODAL 2: WRITE REVIEW
+         ==================================================================== -->
+    <div class="modal-overlay" id="write-review-modal" aria-hidden="true">
+        <div class="modal-box" style="max-width: 580px;">
+            <div class="modal-header">
+                <div class="modal-title">Write Review</div>
+                <button class="modal-close-btn" id="review-modal-close">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="submit-review-form">
+                    <div class="form-group" style="margin-bottom: 1rem;">
+                        <label class="field-label" for="review-resource-select">Resource *</label>
+                        <select id="review-resource-select" class="form-select" required></select>
+                    </div>
+
+                    <div class="form-group" style="margin-bottom: 1rem;">
+                        <label class="field-label">Rating *</label>
+                        <div style="display: flex; gap: 0.5rem; font-size: 1.6rem; cursor: pointer;" id="star-rating-picker">
+                            <span class="star-pick" data-val="1">★</span>
+                            <span class="star-pick" data-val="2">★</span>
+                            <span class="star-pick" data-val="3">★</span>
+                            <span class="star-pick" data-val="4">★</span>
+                            <span class="star-pick active" data-val="5">★</span>
+                        </div>
+                        <input type="hidden" id="review-rating-value" value="5">
+                    </div>
+
+                    <div class="form-grid-2">
+                        <div class="form-group">
+                            <label class="field-label" for="reviewer-name-input">Your Name *</label>
+                            <input type="text" id="reviewer-name-input" class="form-input" placeholder="Jordan Lee" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="field-label" for="reviewer-campus-input">Campus *</label>
+                            <input type="text" id="reviewer-campus-input" class="form-input" placeholder="UC Berkeley" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group" style="margin-top: 1rem;">
+                        <label class="field-label" for="reviewer-comment-input">Feedback *</label>
+                        <textarea id="reviewer-comment-input" class="form-textarea" placeholder="How did this resource help you?" required></textarea>
+                    </div>
+
+                    <div style="margin-top: 1.5rem; display: flex; justify-content: flex-end; gap: 0.75rem;">
+                        <button type="button" class="btn-secondary" id="review-modal-cancel">Cancel</button>
+                        <button type="submit" class="btn-primary">Submit Review (+10⚡)</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- ====================================================================
+         MODAL 3: EDIT PROFILE
+         ==================================================================== -->
+    <div class="modal-overlay" id="edit-profile-modal" aria-hidden="true">
+        <div class="modal-box" style="max-width: 600px;">
+            <div class="modal-header">
+                <div class="modal-title">Edit Profile</div>
+                <button class="modal-close-btn" id="edit-profile-close">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="edit-profile-form">
+                    <div class="form-grid-2">
+                        <div class="form-group">
+                            <label class="field-label" for="edit-prof-name">Name</label>
+                            <input type="text" id="edit-prof-name" class="form-input" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="field-label" for="edit-prof-email">Email</label>
+                            <input type="email" id="edit-prof-email" class="form-input" required>
+                        </div>
+                    </div>
+                    <div class="form-grid-2" style="margin-top: 1rem;">
+                        <div class="form-group">
+                            <label class="field-label" for="edit-prof-dept">Department</label>
+                            <input type="text" id="edit-prof-dept" class="form-input" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="field-label" for="edit-prof-year">Year</label>
+                            <input type="text" id="edit-prof-year" class="form-input" required>
+                        </div>
+                    </div>
+                    <div class="form-group" style="margin-top: 1rem;">
+                        <label class="field-label" for="edit-prof-section">Section</label>
+                        <input type="text" id="edit-prof-section" class="form-input" required>
+                    </div>
+                    <div class="form-group" style="margin-top: 1rem;">
+                        <label class="field-label" for="edit-prof-bio">Bio</label>
+                        <textarea id="edit-prof-bio" class="form-textarea" required></textarea>
+                    </div>
+                    <div style="margin-top: 1.5rem; display: flex; justify-content: flex-end; gap: 0.75rem;">
+                        <button type="button" class="btn-secondary" id="edit-profile-cancel">Cancel</button>
+                        <button type="submit" class="btn-primary">Save Changes</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="js/data.js"></script>
+    <script src="js/utils.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>
